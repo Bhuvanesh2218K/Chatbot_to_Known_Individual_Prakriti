@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaturya - Prakriti Questionnaire</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      background: linear-gradient(to right, #c4b5fd, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    .intro {
+      background: rgba(30, 41, 59, 0.7);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+    .intro h2 { color: #a78bfa; }
+    .section {
+      background: rgba(30, 41, 59, 0.7);
+      padding: 25px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+    .section h2 {
+      color: #a78bfa;
+      margin-bottom: 15px;
+    }
+    .question { margin: 15px 0; }
+    label { display: block; margin-bottom: 8px; font-weight: bold; }
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .submit-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 14px 40px;
+      background: #6366f1;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .submit-btn:hover {
+      background: #4f46e5;
+      transform: translateY(-3px);
+    }
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fef3e6;
+      border-radius: 10px;
+      display: none;
+      color: #333;
+    }
+    /* Floating chatbot */
+    .chatbot-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      background: #6366f1;
+      border-radius: 50%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: all 0.3s;
+    }
+    .chatbot-float:hover {
+      transform: scale(1.1);
+      background: #4f46e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chaturya - Prakriti Questionnaire</h1>
+
+    <!-- 🔽 Introduction -->
+    <div class="intro">
+      <h2>What is Prakriti?</h2>
+      <p>Prakriti is your unique Ayurvedic constitution, formed by the balance of three doshas: <strong>Vata, Pitta, and Kapha</strong>. It is determined at birth and remains constant throughout life.</p>
+      <h2>Why is Knowing Your Prakriti Important?</h2>
+      <p>Understanding your Prakriti helps you choose the right diet, exercise, and lifestyle. It allows you to prevent diseases, maintain emotional balance, and age gracefully with personalized wellness.</p>
+    </div>
+
+    <!-- Questionnaire -->
+    <form id="prakritiForm">
+      <div class="section">
+        <h2>Personal Information</h2>
+        <div class="question">
+          <label>1. Name</label>
+          <input type="text" placeholder="First Name">
+          <input type="text" placeholder="Middle Name (optional)">
+          <input type="text" placeholder="Last Name" required>
+        </div>
+        <div class="question">
+          <label>2. Gender</label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>7. Age</label>
+          <input type="number" id="age" required>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Physical & Physiological Traits</h2>
+        <div class="question">
+          <label>13. Body Frame</label>
+          <div class="radio-group">
+            <label><input type="radio" name="frame" value="Narrow" required> Narrow</label>
+            <label><input type="radio" name="frame" value="Medium"> Medium</label>
+            <label><input type="radio" name="frame" value="Wide"> Wide</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>14. Body Build (Bulk)</label>
+          <div class="radio-group">
+            <label><input type="radio" name="bulk" value="Weakly" required> Weakly developed</label>
+            <label><input type="radio" name="bulk" value="Moderately"> Moderately developed</label>
+            <label><input type="radio" name="bulk" value="Well"> Well developed</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>21. Skin Colour/Complexion</label>
+          <div class="radio-group">
+            <label><input type="radio" name="complexion" value="Fair reddish"> Fair reddish</label>
+            <label><input type="radio" name="complexion" value="Fair yellowish"> Fair yellowish</label>
+            <label><input type="radio" name="complexion" value="Wheatish"> Wheatish</label>
+            <label><input type="radio" name="complexion" value="Dusky"> Dusky</label>
+            <label><input type="radio" name="complexion" value="Dark"> Dark</label>
+          </div>
+        </div>
+        <div class="question">
+          <label>28. Appetite (Regularity)</label>
+          <div class="radio-group">
+            <label><input type="radio" name="appetite_reg" value="Regular"> Regular</label>
+            <label><input type="radio" name="appetite_reg" value="Irregular"> Irregular</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit & Get My Prakriti</button>
+    </form>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <!-- Floating Chatbot Button -->
+  <div class="chatbot-float" onclick="window.open('/chaturya', '_blank', 'width=450,height=700')">?</div>
+
+  <script>
+    document.getElementById('prakritiForm').onsubmit = function(e) {
+      e.preventDefault();
+      let vata=0, pitta=0, kapha=0;
+
+      if (document.querySelector('[name="frame"]:checked')?.value === "Narrow") vata+=3;
+      if (document.querySelector('[name="frame"]:checked')?.value === "Wide") kapha+=3;
+      if (document.querySelector('[name="bulk"]:checked')?.value === "Weakly") vata+=3;
+      if (document.querySelector('[name="bulk"]:checked')?.value === "Well") kapha+=3;
+      if (document.querySelector('[name="complexion"]:checked')?.value.includes("Fair")) pitta+=2;
+      if (document.querySelector('[name="complexion"]:checked')?.value === "Dark") kapha+=2;
+      if (document.querySelector('[name="appetite_reg"]:checked')?.value === "Irregular") vata+=3;
+
+      // Calculate percentages
+      const total = vata + pitta + kapha || 1;
+      const result = {
+        vata: Math.round((vata/total)*100),
+        pitta: Math.round((pitta/total)*100),
+        kapha: Math.round((kapha/total)*100)
+      };
+
+      // Find dominant dosha
+      let dominant = result.vata > result.pitta && result.vata > result.kapha ? "Vata" :
+                     result.pitta > result.vata && result.pitta > result.kapha ? "Pitta" : "Kapha";
+
+      // Lifestyle / treatment recommendations
+      let treatment = "";
+      if (dominant === "Vata") {
+        treatment = `
+          <h3>Recommended Lifestyle for Vata</h3>
+          <ul>
+            <li>Eat warm, cooked, nourishing foods (soups, stews, milk, ghee).</li>
+            <li>Avoid cold, dry, and raw foods.</li>
+            <li>Maintain a regular routine with adequate rest.</li>
+            <li>Practice calming yoga and meditation to reduce anxiety.</li>
+          </ul>`;
+      } else if (dominant === "Pitta") {
+        treatment = `
+          <h3>Recommended Lifestyle for Pitta</h3>
+          <ul>
+            <li>Favor cooling foods like cucumber, melons, leafy greens.</li>
+            <li>Avoid spicy, oily, and fried foods.</li>
+            <li>Engage in calming activities like swimming or walking in nature.</li>
+            <li>Practice relaxation techniques to manage anger and stress.</li>
+          </ul>`;
+      } else if (dominant === "Kapha") {
+        treatment = `
+          <h3>Recommended Lifestyle for Kapha</h3>
+          <ul>
+            <li>Eat light, dry, and warming foods (millets, pulses, ginger, honey).</li>
+            <li>Avoid heavy, oily, and sweet foods.</li>
+            <li>Stay physically active with regular exercise.</li>
+            <li>Engage in stimulating activities to avoid lethargy.</li>
+          </ul>`;
+      }
+
+      // Display result
+      document.getElementById('result').innerHTML = `
+        <h2 style="color:#a52a2a; text-align:center;">Your Prakriti: <strong>${dominant} Dominant</strong></h2>
+        <p style="font-size:1.3rem; text-align:center;">
+          Vata: ${result.vata}% &nbsp;&nbsp; Pitta: ${result.pitta}% &nbsp;&nbsp; Kapha: ${result.kapha}%
+        </p>
+        <div style="background:white; padding:20px; border-radius:10px; margin-top:20px;">
+          <h3>Thank you!</h3>
+          <p>This assessment is based on the CSIR-IGIB TRISUTRA Prakriti questionnaire framework.</p>
+          ${treatment}
+        </div>
+      `;
+      document.getElementById('result').style.display = 'block';
+      window.scrollTo(0, document.getElementById('result').offsetTop);
+    };
+</script>
